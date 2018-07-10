@@ -1,0 +1,19 @@
+{
+  "name": "my_ecommerce",
+  "version": "1.0.0",
+  "description": "慕课网电商",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lihwang/my_eCommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lihwang/my_eCommerce/issues"
+  },
+  "homepage": "https://github.com/lihwang/my_eCommerce#readme"
+}
