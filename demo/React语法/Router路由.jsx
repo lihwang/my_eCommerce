@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route,Link,Switch} from 'react-router-dom'
 //HashRouter   http://localhost:8086/dist/#/  ===>   http://localhost:8086/dist/#/a
 //BrowserRouter   http://localhost:8086/dist/ ===>   http://localhost:8086/a （直接请求到后端是没有资源的）
 //this.props.match.path指的是当前
-//一般统配的放后面
+//一般统配的放后面   Switch只会进入一个
 class A extends React.Component {
     constructor(props) {
         super(props);

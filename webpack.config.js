@@ -12,6 +12,12 @@ module.exports = {
         publicPath:'/dist/',
         filename: 'js/[name].js'
     },
+    resolve:{   //添加resolve：为了使导入文件不要去理会目录层级
+        alias:{
+            page: path.resolve(__dirname,'src/page'),
+            component: path.resolve(__dirname,'src/component')
+        }
+    },
     module: {
         rules: [
             {
@@ -65,6 +71,9 @@ module.exports = {
             .CommonsChunkPlugin({name: 'common', filename: 'js/base.js'})
     ],
     devServer: {
-        port:8086
+        port:8086,
+        historyApiFallback:{    //当找不到页面时默认打开的页面
+            index:'/dist/index.html',
+        }
     }
 }
