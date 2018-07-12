@@ -15,7 +15,8 @@ module.exports = {
     resolve:{   //添加resolve：为了使导入文件不要去理会目录层级
         alias:{
             page: path.resolve(__dirname,'src/page'),
-            component: path.resolve(__dirname,'src/component')
+            component: path.resolve(__dirname,'src/component'),
+            util: path.resolve(__dirname,'src/util'),
         }
     },
     module: {
@@ -74,6 +75,13 @@ module.exports = {
         port:8086,
         historyApiFallback:{    //当找不到页面时默认打开的页面
             index:'/dist/index.html',
+        },
+        proxy:{  //******通过代理发出请求解决当前跨域问题****** 
+            '/manage':{
+                target:'http://admintest.happymmall.com',
+                pathRewrite: {"^/manage" : ""},   //页面查看不出来的
+                changeOrigin:true
+            }
         }
     }
 }
