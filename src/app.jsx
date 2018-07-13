@@ -13,11 +13,12 @@ class App extends React.Component {
         super(props);
     }
     render() {
+        debugger
         return <div>
             <Router>
                 <Switch>
                     <Route path='/login' component={Login} />
-                    <Route path='/' render={(props) => {
+                    <Route path='/' render={props => {
                         <Layout>
                             <Switch>
                                 <Route exact path='/' component={Home} />

@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath:'/dist/',
+        publicPath:'/dist/',   //发布路径
         filename: 'js/[name].js'
     },
     resolve:{   //添加resolve：为了使导入文件不要去理会目录层级
@@ -17,6 +17,7 @@ module.exports = {
             page: path.resolve(__dirname,'src/page'),
             component: path.resolve(__dirname,'src/component'),
             util: path.resolve(__dirname,'src/util'),
+            server: path.resolve(__dirname,'src/server'),
         }
     },
     module: {
@@ -79,7 +80,7 @@ module.exports = {
         proxy:{  //******通过代理发出请求解决当前跨域问题****** 
             '/manage':{
                 target:'http://admintest.happymmall.com',
-                pathRewrite: {"^/manage" : ""},   //页面查看不出来的
+                // pathRewrite: {"^/manage" : ""},   //页面查看不出来的
                 changeOrigin:true
             }
         }

@@ -1,14 +1,17 @@
 import React from 'react';
 import MUtil from 'util/mm.jsx';
+import User from 'server/user-service.jsx';
 import './index.scss';
 
 let _mm=new MUtil();
+let _user=new User();
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect:_mm.getUrlParam('redirect')||'/'
         }
     }
 
@@ -21,18 +24,20 @@ class Login extends React.Component {
 
     //表单提交
     onSubmit(){
-        _mm.request({
-            type:'post',
-            url:'http://admintest.happymmall.com/manage/user/login.do',
-            data:{
-                username:this.state.username,
-                password:this.state.password
-            }
-        }).then((res)=>{
-            
-        },(err)=>{
-
-        })
+        let loginInfo={username:this.state.username,password:this.state.password},
+        checkResult=_user.checkLoginInfo(loginInfo);
+        console.log(checkResult)
+        if(checkResult.status){
+            _user.login(loginInfo).then((res)=>{
+                this.props.history.push(this.state.redirect);    //React内置的页面跳转
+            },(errMsg)=>{
+                _mm.errorTips(errMsg)
+            })
+        }else{
+            //验证不通过
+            _mm.errorTips(checkResult.msg)
+        }
+      
     }
 
     render() {
