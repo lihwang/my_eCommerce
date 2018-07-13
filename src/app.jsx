@@ -13,7 +13,6 @@ class App extends React.Component {
         super(props);
     }
     render() {
-        debugger
         return <div>
             <Router>
                 <Switch>
