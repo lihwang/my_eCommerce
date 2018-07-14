@@ -4,10 +4,19 @@ class User{
     login(loginInfo){    //内部的请求本身封装的就是promise请求
         return _mm.request({
             type:'post',
-            url:'http://admintest.happymmall.com/manage/user/login.do',
+            url:'/manage/user/login.do',
             data:loginInfo
         })
     }
+
+    logout(){
+        return _mm.request({
+            type:'post',
+            url:'/user/logout.do',
+            data:loginInfo
+        })
+    }
+
     //检查登录接口合法不
     checkLoginInfo(loginInfo){
         let username=$.trim(loginInfo.username);
