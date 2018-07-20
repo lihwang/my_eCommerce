@@ -22,7 +22,7 @@ class App extends React.Component {
                 <Route path='/product' component={Home} />
                 <Route path='/product-category' component={Home} />
                 <Route path='/user/index' component={UserList} />
-                <Route path='/user' component={Home} />
+                <Route path='/user' component={UserList} />
                 <Redirect exact from='/user' to='' />
                 <Route component={ErrorPage} />
             </Switch>
@@ -31,7 +31,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route path='/login' component={Login} />
-                    <Route path='/' render={props =><LayoutRouter></LayoutRouter>} />
+                    <Route path='/' render={props =>LayoutRouter} />
                 </Switch>
             </Router>
         </div>
