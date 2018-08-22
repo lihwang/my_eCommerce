@@ -18,7 +18,9 @@ module.exports = {
             component: path.resolve(__dirname,'src/component'),
             util: path.resolve(__dirname,'src/util'),
             server: path.resolve(__dirname,'src/server'),
-        }
+        },
+        extensions: ['.js', '.jsx','.json'],
+
     },
     module: {
         rules: [

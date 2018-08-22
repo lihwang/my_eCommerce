@@ -37,9 +37,14 @@ class MUtil {
             result = querySring.match(reg);
         return result? decodeURIComponent(result[2]):null;
     }
-    //错误提示
+    //错误提示   ==>(方便后期一次行修改所有提示信息样式)
     errorTips(errMsg){
         alert(errMsg||'好像哪里不对了~');
+    }
+
+    //错误提示
+    successTips(successMsg){
+        alert(successMsg||'操作成功');
     }
     //存储内容
     setStorage(name,data){
