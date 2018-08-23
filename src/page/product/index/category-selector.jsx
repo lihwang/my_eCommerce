@@ -22,6 +22,29 @@ class CategorySelector extends React.Component {
         this.loadFirstCategory();
     }
 
+    componentWillReceiveProps(nextProps){
+        let categoryIdChange=(this.props.categoryId!==nextProps.categoryId),
+         parentCategoryIdChange=(this.props.parentCategoryId!==nextProps.parentCategoryId);
+         if(!categoryIdChange && !categoryIdChange){
+             return ;
+         }
+         //假如只有一级品类
+         if(nextProps.parentCategoryIdChange==0){
+             this.setState({
+                firstCategoryId:nextProps.categoryId,
+                secondCategoryId:0
+             })
+         }else{
+            this.setState({
+                firstCategoryId:nextProps.parentCategoryId,
+                secondCategoryId:nextProps.categoryId,
+             },()=>{
+                parentCategoryIdChange && this.loadSecondCategory ();
+             })
+         }
+
+    }
+
     //一级分类
     loadFirstCategory(){
         _product.getCategoryList().then((res)=>{
@@ -45,6 +68,9 @@ class CategorySelector extends React.Component {
     }
 
     onFirstCategoryChange(e){
+        if(this.props.readOnly){
+            return;
+        }
         let newValue=e.target.value||0;
         this.setState({ //异步操作
             firstCategoryId:newValue,
@@ -57,6 +83,9 @@ class CategorySelector extends React.Component {
     }
 
     onSecondCategoryChange(e){
+        if(this.props.readOnly){
+            return;
+        }
         let newValue=e.target.value||0;
         this.setState({ //异步操作
             secondCategoryId:newValue,
@@ -78,7 +107,7 @@ class CategorySelector extends React.Component {
 
     render() {
         return <div className="col-md-10">
-        <select onChange={(e)=>{this.onFirstCategoryChange(e)}} className="form-control cate-select">
+        <select readOnly={this.props.readOnly} value={this.state.firstCategoryId} onChange={(e)=>{this.onFirstCategoryChange(e)}} className="form-control cate-select">
             <option value="">请选择一级分类</option>
             {
                 this.state.firstCategoryList.map((item,index)=>{
@@ -88,7 +117,7 @@ class CategorySelector extends React.Component {
         </select>
         {
             this.state.secondCategoryList.length?
-            <select onChange={(e)=>{this.onSecondCategoryChange(e)}} className="form-control cate-select">
+            <select readOnly={this.props.readOnly}  value={this.state.secondCategoryId} onChange={(e)=>{this.onSecondCategoryChange(e)}} className="form-control cate-select">
                 <option value="">请选择二级分类</option>
                 {
                     this.state.secondCategoryList.map((item,index)=>{
