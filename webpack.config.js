@@ -5,6 +5,7 @@ const uglify = require('uglifyjs-webpack-plugin');
 
 const webpack = require('webpack');
 
+let WEBPACK_ENV=process.env.WEBPACK_ENV || 'dev';
 
 module.exports = {
     entry: {
@@ -12,7 +13,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath:'/dist/',   //发布路径
+        publicPath:WEBPACK_ENV=='dev'?'/dist/':'静态域名',   //发布路径
         filename: 'js/[name].js'
     },
     resolve:{   //添加resolve：为了使导入文件不要去理会目录层级
