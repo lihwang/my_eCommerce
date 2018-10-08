@@ -53,13 +53,9 @@ class UserList extends React.Component {
         return <div id='page-wrapper'>
           <PageTitle title='用户列表'></PageTitle>
             <div className="row">
-                <div className='col-md-12'>
-                    <table className='table table-striped table-bordered'>
-                        <TableList tableHeads={['ID','用户名','邮箱','电话','注册时间']}>
-                            {listBody}
-                        </TableList>
-                    </table>
-                </div>
+                    <TableList tableHeads={['ID','用户名','邮箱','电话','注册时间']}>
+                        {listBody}
+                    </TableList>
             </div>
             <Pagination current={this.state.pageNum} total={this.state.total} onChange={pageNum=>this.onPageNumChange(pageNum)}></Pagination>
         </div>

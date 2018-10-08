@@ -27,7 +27,7 @@ class Product{
         
     }
 
-    //品类相关 添加
+    //根据父类id获取品类相关 
     getCategoryList(parentCategoryId){
         return _mm.request({
             type:'post',
@@ -35,6 +35,25 @@ class Product{
             data:{
                 categoryId:parentCategoryId||0
             }
+        })
+    }
+
+
+       //新增品类
+    saveCategory(category){
+        return _mm.request({
+            type:'post',
+            url:'/manage/category/add_category.do',
+            data:category
+        })
+    }
+
+    //更新名称
+    updateCategoryName(category){
+        return _mm.request({
+            type:'post',
+            url:'/manage/category/set_category_name.do',
+            data:category
         })
     }
 
@@ -100,6 +119,8 @@ class Product{
             }
         })
     }
+
+ 
 }
   
 export default Product;
